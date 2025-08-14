@@ -8,7 +8,18 @@ async function getBlogs() {
 export default async function Blogs() {
   const blogs = await getBlogs();
   return <div>
-    {JSON.stringify(blogs)}
+    {blogs.map((blog: Itodo) => <Todo title={blog.title} completed={blog.completed} />)}
 
+  </div>
+}
+
+interface Itodo {
+  title: string;
+  completed: boolean;
+}
+
+function Todo({ title, completed }: Itodo) {
+  return <div>
+    {title}{completed ? "done!" : "not done"}
   </div>
 }
